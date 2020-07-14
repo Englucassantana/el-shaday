@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja</title>
+    <script src="loja.js"></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <img src="imagem/logo.png" alt="Logo">
+        <nav>
+            <span>Home</span>
+            <span>Cardápio</span>
+            <span>Contato</span>
+        </nav>
+        
+    </header>
+    <main>
+        <div class="cardapio">
+            <h1>Loja</h1>
+            <div class="itens">
+                <div class="item">
+                    <span class="item-nome">Nome_do_item</span>
+                    <img class="item-imagem"src="imagem/item.png">
+                    <span class="item-preco">R$00,00</span>
+                    <button class="btn btn-add-item" type="button">Add ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+        <div class="carrinho">
+            <h1>Carrinho</h1>
+            <div class="tabela">
+                <div class="cabecalho-tabela">
+                    <span>Nome</span>
+                    <span>Foto</span>
+                    <span>Preço</span>
+                    <span>Quantidade</span>
+                </div>
+                <div class="item-carrinho">
+                    <span class="item-carrinho-nome">Nome_do_item</span>
+                    <img class="item-carrinho-imagem"src="imagem/item.png">
+                    <span class="item-carrinho-preco">R$00,00</span>
+                    <input class="quantidade" type="number" value="1">
+                    <button class="btn btn-rem-item" type="button">Remover</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
