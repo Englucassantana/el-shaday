@@ -62,15 +62,15 @@ function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco
     console.log(itemNome);
     var novoItem = document.createElement('div')
     novoItem.classList.add('item-carrinho')
-    var itemASerEscrito=
-        "                        <span class=\"item-carrinho-nome\">${itemNome}</span>\n" +
-        "                        <img class=\"item-carrinho-imagem\"src=\"imagem/item.png\">\n" +
-        "                        <span class=\"item-carrinho-tamanho\">${itemTamanho}</span>\n" +
-        "                        <span class=\"item-carrinho-sabor\">Sabor</span>\n" +
-        "                        <span class=\"item-carrinho-preco\">R$00,00</span>\n" +
-        "                        <input class=\"quantidade\" type=\"number\" value=\"1\">\n" +
-        "                        <button class=\"btn btn-rem-item\" type=\"button\">Remover</button>\n" +
-        "                    </div>"
+    var itemASerEscrito= `
+       <span class=\"item-carrinho-nome\">${itemNome}</span> 
+        <img class=\"item-carrinho-imagem\"src=\"imagem/item.png\"> 
+        <span class=\"item-carrinho-tamanho\">${itemTamanho}</span>
+       <span class=\"item-carrinho-sabor\">${itemSabor}</span>
+       <span class=\"item-carrinho-preco\">${itemPreco}</span>
+       <input class=\"quantidade\" type=\"number\" value=\"1\">
+       <button class=\"btn btn-rem-item\" type=\"button\">Remover</button>
+    </div> `
     novoItem.innerHTML = itemASerEscrito;
     itensCarrinho.append(novoItem);
     novoItem.getElementsByClassName('btn-rem-item')[0].addEventListener('click',removeItemCar)
