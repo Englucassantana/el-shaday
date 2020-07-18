@@ -13,7 +13,7 @@ function ready() {
 
     var buttonAdicinaItensCar = document.getElementsByClassName('btn-add-item');
     for(var i = 0; i < buttonAdicinaItensCar.length; i++){
-        buttonAdicinaItensCar[i].addEventListener('click',adicionaItemCarClicado)
+        buttonAdicinaItensCar[i].addEventListener('click',coletaItemCardapio)
     }
 }
 
@@ -27,42 +27,53 @@ function removeItemCar() {
     updatePreco();
 }
 
-function adicionaItemCarClicado() {
-    /*
-    Adicionar item ao carrinho
-    Atualizar preço
-     */
-    var botao = event.target
-    var compraItem = botao.parentElement.parentElement
-    var titulo = compraItem.getElementsByClassName('item-nome')[0].innerText
-    var preco = compraItem.getElementsByClassName('item-preco')[0].innerText
-    var imagemItem = compraItem.getElementsByClassName('item-imagem')[0].src
-    adicionaItemCar(titulo, preco, imagemItem)
-    updatePreco();
-
+function coletaItemCardapio(){
+    var botao = event.target;
+    var sabor = botao.parentElement;
+    var itemSabor = sabor.getElementsByClassName('item-sabor')[0].innerText;
+    var itemPreco = sabor.getElementsByClassName('item-preco')[0].innerText;
+    var tamanho = botao.parentElement.parentElement;
+    var itemTamanho = tamanho.getElementsByClassName('item-tamanho')[0].innerText;
+    var compraItem = botao.parentElement.parentElement.parentElement;
+    var itemNome = compraItem.getElementsByClassName('item-nome')[0].innerText;
+    var itemImagem = compraItem.getElementsByClassName('item-imagem')[0].src;
+    adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco);
 }
 
-function adicionaItemCar(titulo, preco, iamgemItem) {
-    var itemCarrinho = document.createElement('div')
-    cabecalhoTabela.classList.add('cabecalho-tabela')
-    var itemCarrinhoNome = document.getElementsByClassName('item-carrinho-nome')
-    var itemCarrinho = document.getElementsByClassName('item-carrinho')
-    for (var i = 0; i < itemCarrinhoNome.length; i++) {
-        if (itemCarrinhoNome[i].innerText == titulo) {
-            alert('Esse item já foi adicionado ao carrinho')
-            return
+
+function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco) {
+    var itensCarrinho = document.getElementsByClassName('item-carrinho')[0];
+    var itemCarrinhoNome = document.getElementsByClassName('item-carrinho-nome');
+    var itemCarrinhoTamanho = document.getElementsByClassName('item-carrinho-tamanho');
+    var itemCarrinhoSabor = document.getElementsByClassName('item-carrinho-sabor');
+    for (var i = 0; i < itensCarrinho.length;i++){
+        if (itemCarrinhoNome[i].innerText == itemNome){
+            return;
+        }else{
+            if (itemCarrinhoTamanho[i].innerText == itemTamanho) {
+                return;
+            }else{
+                if(itemCarrinhoSabor[i].innerText == itemSabor){
+                    return;
+                }
+            }
         }
     }
-    var itemCarrinhoConteudo = `
-        <span class="item-carrinho-nome">Nome_do_item</span>
-        <img class="item-carrinho-imagem"src="imagem/item.png">
-        <span class="item-carrinho-preco">R$00,00</span>
-        <input class="quantidade" type="number" value="1">
-        <button class="btn btn-rem-item" type="button">Remover</button>`
-    itemCarrinho.innerHTML = itemCarrinhoConteudo
-    itemCarrinhoConteudo.append(itemCarrinho)
-    itemCarrinho.getElementsByClassName('btn-rem-item')[0].addEventListener('click', removeItemCar)
-    itemCarrinho.getElementsByClassName('quantidade')[0].addEventListener('change', updatePreco)
+    console.log(itemNome);
+    var novoItem = document.createElement('div')
+    novoItem.classList.add('item-carrinho')
+    var itemASerEscrito=
+        "                        <span class=\"item-carrinho-nome\">${itemNome}</span>\n" +
+        "                        <img class=\"item-carrinho-imagem\"src=\"imagem/item.png\">\n" +
+        "                        <span class=\"item-carrinho-tamanho\">${itemTamanho}</span>\n" +
+        "                        <span class=\"item-carrinho-sabor\">Sabor</span>\n" +
+        "                        <span class=\"item-carrinho-preco\">R$00,00</span>\n" +
+        "                        <input class=\"quantidade\" type=\"number\" value=\"1\">\n" +
+        "                        <button class=\"btn btn-rem-item\" type=\"button\">Remover</button>\n" +
+        "                    </div>"
+    novoItem.innerHTML = itemASerEscrito;
+    itensCarrinho.append(novoItem);
+    novoItem.getElementsByClassName('btn-rem-item')[0].addEventListener('click',removeItemCar)
 }
 
 function updatePreco() {
