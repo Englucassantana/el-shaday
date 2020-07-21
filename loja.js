@@ -15,6 +15,11 @@ function ready() {
     for(var i = 0; i < buttonAdicinaItensCar.length; i++){
         buttonAdicinaItensCar[i].addEventListener('click',coletaItemCardapio);
     }
+
+    var quantidadeEntradas = document.getElementsByClassName('quatidade');
+    for (i = 0;i < quantidadeEntradas.length;i++){
+        quantidadeEntradas[i].addEventListener('click',mudancaQuantidade);
+    }
 }
 
 function removeItemCar() {
@@ -43,21 +48,14 @@ function coletaItemCardapio(){
 
 
 function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco) {
-    var itensCarrinho = document.getElementsByClassName('item-carrinho')[0];
+    var itensCarrinho = document.getElementsByClassName('itens-carrinho')[0];
+    var itemCarrinho = document.getElementsByClassName('item-carrinho');
     var itemCarrinhoNome = document.getElementsByClassName('item-carrinho-nome');
     var itemCarrinhoTamanho = document.getElementsByClassName('item-carrinho-tamanho');
     var itemCarrinhoSabor = document.getElementsByClassName('item-carrinho-sabor');
-    for (var i = 0; i < itensCarrinho.length;i++){
-        if (itemCarrinhoNome[i].innerText == itemNome){
+    for (var i = 0; i < itemCarrinho.length;i++){
+        if (itemCarrinhoNome[i].innerText == itemNome && itemCarrinhoTamanho[i].innerText == itemTamanho && itemCarrinhoSabor[i].innerText == itemSabor){
             return;
-        }else{
-            if (itemCarrinhoTamanho[i].innerText == itemTamanho) {
-                return;
-            }else{
-                if(itemCarrinhoSabor[i].innerText == itemSabor){
-                    return;
-                }
-            }
         }
     }
     console.log(itemNome);
@@ -75,6 +73,7 @@ function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco
     novoItem.innerHTML = itemASerEscrito;
     itensCarrinho.append(novoItem);
     novoItem.getElementsByClassName('btn-rem-item')[0].addEventListener('click',removeItemCar);
+    novoItem.getElementsByClassName('quantidade')[0].addEventListener('change',quatidadeMudanca);
 }
 
 function updatePreco() {
@@ -84,13 +83,13 @@ function updatePreco() {
      */
     var itensCarrinho = document.getElementsByClassName('itens-carrinho')[0];
     console.log(itensCarrinho);
-    var itemCarrinho = itensCarrinho.getElementsByClassName("item-carrinho");
+    var itemCarrinho = itensCarrinho.getElementsByClassName('item-carrinho');
     console.log(itemCarrinho);
     var total = 0;
-    for (var i = 1; i < itemCarrinho.length; i++){
+    for (var i = 0; i < itemCarrinho.length; i++){
         var item = itemCarrinho[i];
         var elementoPreco = item.getElementsByClassName('item-carrinho-preco')[0];
-        console.log(elementoPreco)
+        console.log(elementoPreco);
         var quantidadeElemento = item.getElementsByClassName('quantidade')[0];
         var preco = elementoPreco.innerText.replace('R$','');
         preco = preco.replace(',','.');
@@ -103,4 +102,13 @@ function updatePreco() {
     total = total.toString();
     total = total.replace('.',',');
     document.getElementsByClassName('preco-total')[0].innerText = 'R$' + total;
+
+}
+
+function quatidadeMudanca() {
+    var input = event.target;
+    if(isNaN(input.value) || input.value <= 0){
+        input.value = 1;
+    }
+    updatePreco();
 }
