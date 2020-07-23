@@ -1,0 +1,95 @@
+html{
+    font-family: "Gotham Book", sans-serif;
+}
+header{
+    background: aliceblue;
+    padding: 20px 0;
+}
+
+.cabecalho img{
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    height: 44px;
+    vertical-align: top;
+}
+
+.caixa{
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+nav{
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+nav li{
+    display: inline;
+    margin: 0 0 0 15px;
+}
+
+nav li a{
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+/*Inicio dos cardápio*/
+.cardapio{
+    background: lightyellow;
+}
+.item{
+    padding-bottom: 20px;
+}
+
+h1{
+    padding: 30px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.item-nome{
+    display: block;
+    text-transform: uppercase ;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.item img{
+    height: 180px;
+    display: inline-block;
+    padding-top: 10px;
+}
+.tamanhos{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.tamanho{
+    padding-bottom: 10px;
+}
+
+.item-tamanho{
+    font-weight: bold;
+}
+.item-sabor{
+    display: inline-block;
+    width: 170px;
+}
+
+.item-preco{
+    display: inline-block;
+    width: 75px;
+    text-align: right;
+}
+
+.btn-add-item{
+
+}

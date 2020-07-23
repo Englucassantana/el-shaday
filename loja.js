@@ -39,10 +39,12 @@ function coletaItemCardapio(){
     var itemPreco = sabor.getElementsByClassName('item-preco')[0].innerText;
     var tamanho = botao.parentElement.parentElement;
     var itemTamanho = tamanho.getElementsByClassName('item-tamanho')[0].innerText;
-    var compraItem = botao.parentElement.parentElement.parentElement;
+    var compraItem = botao.parentElement.parentElement.parentElement.parentElement;
+    console.log(compraItem);
     var itemNome = compraItem.getElementsByClassName('item-nome')[0].innerText;
     var itemImagem = compraItem.getElementsByClassName('item-imagem')[0].src;
     adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco);
+    console.log(itemNome);
     updatePreco();
 }
 
@@ -63,7 +65,7 @@ function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco
     novoItem.classList.add('item-carrinho');
     var itemASerEscrito= `
             <span class=\"item-carrinho-nome\">${itemNome}</span> 
-            <img class=\"item-carrinho-imagem\"src=\"imagem/item.png\"> 
+            <img class=\"item-carrinho-imagem\"src=${itemImagem}> 
             <span class=\"item-carrinho-tamanho\">${itemTamanho}</span>
             <span class=\"item-carrinho-sabor\">${itemSabor}</span>
             <span class=\"item-carrinho-preco\">${itemPreco}</span>
