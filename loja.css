@@ -93,3 +93,44 @@ h1{
 .btn-add-item{
 
 }
+
+.carrinho{
+    background: beige;
+}
+.tabela{
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+
+}
+
+.cabecalho-tabela{
+    padding-bottom: 10px;
+}
+
+.coluna{
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 120px;
+}
+.item-carrinho{
+    padding-bottom: 10px;
+    border-top: 2px solid black;
+}
+.item-carrinho-nome, .item-carrinho-imagem, .item-carrinho-tamanho, .item-carrinho-sabor, .item-carrinho-preco{
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+    width: 120px;
+    vertical-align: top;
+    padding: 0 20px 0 0;
+}
+.item-carrinho-preco{
+    text-align: right;
+}
+
+.total{
+    padding-top: 30px;
+    position: relative;
+}
