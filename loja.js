@@ -1,4 +1,130 @@
 //Ainda não sei o que é essa parte
+var data = {
+    "calzone": {
+        "sabor": [
+            {
+                "itemSabor": "Canadense",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$29,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$39,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$45,50"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "Camarão",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$30,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$38,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$54,00"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "Toscana com bacon",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$27,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$36,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$42,00"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "Camarão",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$27,50"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$36,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$42,00"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "3 Queijos",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$32,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$39,50"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$47,50"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "Nutri fit",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$32,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$46,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$54,00"
+                    }
+                ]
+            },
+            {
+                "itemSabor": "Atum",
+                "tamanho": [
+                    {
+                        "itemTamanho": "Médio",
+                        "preco": "R$29,00"
+                    },
+                    {
+                        "itemTamanho": "Grande",
+                        "preco": "R$39,00"
+                    },
+                    {
+                        "itemTamanho": "Extra Grande",
+                        "preco": "R$46,50"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
@@ -11,14 +137,50 @@ function ready() {
         buttonRemoveItensCar[i].addEventListener('click',removeItemCar);
     }
 
-    var buttonAdicinaItensCar = document.getElementsByClassName('btn-add-item');
-    for(var i = 0; i < buttonAdicinaItensCar.length; i++){
-        buttonAdicinaItensCar[i].addEventListener('click',coletaItemCardapio);
+    var buttonAdicionaItensCar = document.getElementsByClassName('btn-add-item');
+    for(var i = 0; i < buttonAdicionaItensCar.length; i++){
+        buttonAdicionaItensCar[i].addEventListener('click',coletaItemCardapio);
     }
 
     var quantidadeEntradas = document.getElementsByClassName('quatidade');
     for (i = 0;i < quantidadeEntradas.length;i++){
         quantidadeEntradas[i].addEventListener('click',mudancaQuantidade);
+    }
+
+    var selecaoCalzone = document.getElementsByClassName('selecao-tamanho');
+    for(var i = 0; i < selecaoCalzone.length; i++){
+        selecaoCalzone[i].addEventListener('change',tamanhoPreco);
+    }
+
+    var buttonAdicionaCalzoneCar = document.getElementsByClassName('btn-add-calzone');
+    for(var i = 0; i < buttonAdicionaCalzoneCar.length; i++){
+        buttonAdicionaCalzoneCar[i].addEventListener('click',coletaCalzoneCardapio);
+    }
+}
+
+function tamanhoPreco() {
+
+    var selecaoMudada = event.target;
+    var tamanhoCalzone = selecaoMudada.parentElement;
+    console.log(tamanhoCalzone.getElementsByClassName("selecao-tamanho"));
+    var selecaoTamanho = tamanhoCalzone.getElementsByClassName("selecao-tamanho");
+    var saborCalzone = selecaoMudada.parentElement.parentElement;
+    console.log(data.calzone.sabor.length);
+    for (var i = 0; i < data.calzone.sabor.length; ++i){
+        var itemSabor = saborCalzone.getElementsByClassName("item-sabor");
+        console.log(selecaoTamanho[0].value);
+        console.log(data.calzone.sabor[i].itemSabor);
+        console.log(itemSabor[0].innerText);
+        if(data.calzone.sabor[i].itemSabor == itemSabor[0].innerText){
+            for (var j = 0; j < data.calzone.sabor[i].tamanho.length; ++j){
+                if(data.calzone.sabor[i].tamanho[j].itemTamanho == selecaoTamanho[0].value){
+                    var novoPreco = tamanhoCalzone.getElementsByClassName("item-preco");
+                    novoPreco[0].innerHTML = data.calzone.sabor[i].tamanho[j].preco;
+                }
+
+            }
+
+        }
     }
 }
 
@@ -48,6 +210,20 @@ function coletaItemCardapio(){
     updatePreco();
 }
 
+function coletaCalzoneCardapio() {
+    var botao = event.target;
+    var preco = botao.parentElement;
+    var itemPreco = preco.getElementsByClassName('item-preco')[0].innerText;
+    var tamanho = botao.parentElement.parentElement;
+    var itemTamanho = tamanho.getElementsByClassName('selecao-tamanho')[0].value;
+    var itemSabor = tamanho.getElementsByClassName('item-sabor')[0].innerHTML;
+    var sabor = botao.parentElement.parentElement.parentElement.parentElement;
+    console.log(sabor);
+    var itemNome = sabor.getElementsByClassName('item-nome')[0].innerText;
+    var itemImagem = sabor.getElementsByClassName('item-imagem')[0].src;
+    adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco);
+    updatePreco();
+}
 
 function adicionaItemCar(itemNome, itemImagem, itemTamanho, itemSabor, itemPreco) {
     var itensCarrinho = document.getElementsByClassName('itens-carrinho')[0];
@@ -101,9 +277,9 @@ function updatePreco() {
     }
 
     total = Math.round(total*100)/100;
-    total = total.toString();
+    total = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     total = total.replace('.',',');
-    document.getElementsByClassName('preco-total')[0].innerText = 'R$' + total;
+    document.getElementsByClassName('preco-total')[0].innerText = total;
 
 }
 

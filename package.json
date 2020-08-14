@@ -1,0 +1,31 @@
+{
+  "calzone": {
+    "sabor": [
+      {
+        "itemSabor": "Canadense",
+        "tamanho": [
+          {
+            "itemTamanho": "Médio",
+            "preco": "30"
+          },
+          {
+            "itemTamanho": "Grande",
+            "preco": "35"
+          },
+          {
+            "itemTamanho": "Extra Grande",
+            "preco": "60"
+          }
+        ]
+      },
+      {
+        "itemSabor": "Toscana com bacon",
+        "tamanho": {
+          "medio": "30",
+          "grande": "35",
+          "extragrande": "40"
+        }
+      }
+    ]
+  }
+}
